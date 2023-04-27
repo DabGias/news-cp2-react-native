@@ -1,24 +1,23 @@
 import React from "react"
-import { Image, Pressable, Text, View } from "react-native"
+import { ImageBackground, Pressable, Text, View } from "react-native"
 import { styles } from "../style/Style"
 
-export function Card({ materia, index }) {
+export function Card({ materia, index, onPress}) {
     return(
-        <View style={styles.card} key={index}>
-                <View>
-                    {
-                        materia.img !== "" ?
-                            <Image style={{width: 50, height: 50}} source={{uri: materia.img}}/>
-                        :
-                            ""
-                    }
+        <Pressable style={styles.card} key={index} onPress={onPress}>
+            {
+                materia.img !== "" ?
+                    <View style={styles.viewCardImg}>
+                                <ImageBackground resizeMode="cover" style={styles.cardImg} source={{uri: materia.img}}/>
+                    </View>
+                :
+                    ""
+            }
+                <View style={materia.img !== "" ? {width: "70%", padding: 15} : {width: "100%", padding: 15}}>
+                    <Text style={{width: "100%", fontWeight: "bold"}}>{materia.titulo}</Text>
+                    <Text style={{width: "100%", marginTop: 15, marginBottom: 15}}>{materia.desc}</Text>
+                    <Text style={{width: "100%", textAlign: "right"}}>{materia.dataPubli.getDate()}/{materia.dataPubli.getMonth() + 1}/{materia.dataPubli.getFullYear()} | {materia.autor}</Text>
                 </View>
-                <View style={{width: "100%"}}>
-                    <Text>Título: {materia.titulo}</Text>
-                    <Text>Descrição: {materia.desc}</Text>
-                    <Text>Data: {materia.dataPubli.getDate()}/{materia.dataPubli.getMonth()}/{materia.dataPubli.getFullYear()}</Text>
-                    <Text>Autor: {materia.autor}</Text>
-                </View>
-        </View>
+        </Pressable>
     )
 }
