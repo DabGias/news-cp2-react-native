@@ -15,7 +15,7 @@ export default function App() {
             backgroundColor: '#2D3946',
           },
           headerTintColor: '#fff',
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       >
         <Stack.Screen
@@ -25,6 +25,9 @@ export default function App() {
         <Stack.Screen
           name='Jogo'
           component={InfoCard}
+          options={
+            ({ route }) => ({ title: route.params.titulo, headerTitleStyle: { fontSize: 12 }, headerTitleAlign: "left" })
+          }
         />
       </Stack.Navigator>
     </NavigationContainer>

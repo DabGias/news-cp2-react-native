@@ -15,7 +15,16 @@ export function Home({ navigation }) {
                         key={index}
                         navigation={navigation}
                         onPress={() => {
-                            navigation.navigate('Jogo', {materia})
+                            navigation.navigate('Jogo', {
+                                img: materia.img,
+                                titulo: materia.titulo,
+                                desc: materia.desc,
+                                autor: materia.autor,
+                                conteudo: materia.conteudo,
+                                ano: materia.dataPubli.getFullYear(),
+                                mes: materia.dataPubli.getMonth(),
+                                dia: materia.dataPubli.getDate()
+                            })
                         }}
                     />
                     )
