@@ -18,6 +18,25 @@ export const styles = StyleSheet.create({
         alignContent: "center"
     },
 
+    cardDestaque: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        backgroundColor: '#3D4E5F',
+        borderRadius: 15,
+        width: "90%",
+        marginTop: 50,
+        marginBottom: 50
+    },
+
+    viewDestaqueImg: {
+        overflow: "hidden", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        borderTopLeftRadius: 15, 
+        borderTopRightRadius: 15
+    },
+
     card: {
         display: "flex",
         flexDirection: "row",

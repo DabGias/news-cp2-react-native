@@ -5,6 +5,8 @@ import { styles } from "../style/Style"
 export function Form() {
     const [isCadastrado, setCadastrado] = useState(false)
     const [receberEmail, setReceberEmail] = useState(false)
+    const [txtButton, setTxtButton] = useState('Cadastrar')
+    const [styleSuccess, setStyleSuccess] = useState({backgroundColor: "#3D4E5F"})
     const [form, setForm] = useState({
         nome: "",
         email: ""
@@ -38,6 +40,20 @@ export function Form() {
         }
     }
 
+    function click() {
+        form["nome"] = ""
+        form["email"] = ""
+        setTxtButton("Agradecemos seu cadastro")
+        setStyleSuccess({...styleSuccess, ["backgroundColor"]: "#00ff2b"})
+
+        setTimeout(() => {
+            setTxtButton("Cadastrar")
+            setStyleSuccess({...styleSuccess, ["backgroundColor"]: "#3D4E5F"})
+            setReceberEmail(false)
+            setCadastrado(false)
+        }, 5000)
+    }
+
     return(
         <View style={styles.form}>
             <TextInput
@@ -59,7 +75,7 @@ export function Form() {
             />
             {
                 form["nome"] !== "" ? 
-                    verifEmail() ?
+                    verifNome() ?
                         ""
                     :
                         <Text style={{color: "red"}}>Preencha o campo / Nome inválido</Text>
@@ -112,9 +128,10 @@ export function Form() {
 
             <Pressable
                 disabled={!isCadastrado}
-                style={isCadastrado ? styles.formBtn : styles.formBtnDisabled}
+                style={[isCadastrado ? styles.formBtn : styles.formBtnDisabled, styleSuccess]}
+                onPress={click}
             >
-                <Text style={isCadastrado ? styles.formBtnText : styles.formBtnTextDisabled}>Cadastrar</Text>
+                <Text style={isCadastrado ? styles.formBtnText : styles.formBtnTextDisabled}>{txtButton}</Text>
             </Pressable>
         </View>
     )
