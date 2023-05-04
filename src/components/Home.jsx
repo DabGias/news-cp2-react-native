@@ -13,7 +13,7 @@ export function Home({ navigation }) {
     useEffect(() => {
         try {
             materias.map((materia) => {
-                if (materia.img !== "") {
+                if (materia.img.trim() !== "") {
                     var dados = Object.assign({}, destaque)
     
                     dados.img = materia.img
@@ -39,7 +39,7 @@ export function Home({ navigation }) {
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
                 {
-                    destaque ?
+                    destaque.img.trim() !== "" ?
                         <Destaque
                             destaque={destaque}
                             onPress={() => {
@@ -60,7 +60,7 @@ export function Home({ navigation }) {
                 }
 
                 {
-                    materias.filter((m) => m.titulo !== destaque.titulo).map((materia, index) => 
+                    materias.filter((m) => m.titulo.trim() !== destaque.titulo.trim()).map((materia, index) => 
                         <Card
                             materia={materia}
                             index={index}
