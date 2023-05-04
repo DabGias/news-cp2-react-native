@@ -1,4 +1,4 @@
-export const materias = [
+export const materiasJogos = [
     {
       img: "",
       titulo: "PS Plus de maio tem Grid Legends, Chivalry 2 e mais jogos grátis",
@@ -327,3 +327,14 @@ export const materias = [
       autor: "John Doe"
     }
   ]
+
+export const materiasEsportes = [
+  {
+    img: "",
+    titulo: "Matéria de Esporte",
+    desc: "Matéria sobre esporte",
+    conteudo: `conteudo de esporte`,
+    dataPubli: new Date(),
+    autor: "Esportista"
+  }
+]

@@ -1,35 +1,30 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native' 
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Home } from './src/components/Home'
-import { InfoCard } from './src/components/InfoCard'
+import { StackRoute } from './src/routes/StackRoute'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { NavigationContainer } from '@react-navigation/native'
+import { materiasJogos, materiasEsportes } from './src/context/Materias'
 
-const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#2D3946',
+              backgroundColor: '#2D3946',
           },
           headerTintColor: '#fff',
           headerTitleAlign: "center"
         }}
       >
-        <Stack.Screen
-          name='Jogos'
-          component={Home}
-        />
-        <Stack.Screen
-          name='Jogo'
-          component={InfoCard}
-          options={
-            ({ route }) => ({ title: route.params.titulo, headerTitleStyle: { fontSize: 12 }, headerTitleAlign: "left" })
-          }
-        />
-      </Stack.Navigator>
+        <Drawer.Screen name='Jogos'>
+          {() => <StackRoute materias={materiasJogos} name={"Jogos"}/>}
+        </Drawer.Screen>
+        <Drawer.Screen name='Esportes'>
+          {() => <StackRoute materias={materiasEsportes} name={"Esportes"}/>}
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </NavigationContainer>
   )
 }

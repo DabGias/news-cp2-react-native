@@ -1,12 +1,11 @@
 import { ScrollView, View } from 'react-native'
 import { styles } from '../style/Style' 
 import { Card } from './Card' 
-import { materias } from '../context/Materias' 
 import { useEffect, useState } from 'react'
 import { Destaque } from './Destaque'
 import { Anuncio } from './Anuncio'
 
-export function Home({ navigation }) {
+export function Home({ navigation, materias }) {
     const [destaque, setDestaque] = useState({})
     const BreakError = {}
 
@@ -39,11 +38,11 @@ export function Home({ navigation }) {
         <View style={styles.container}>
             <ScrollView style={styles.scrollView}>
                 {
-                    destaque.img.trim() !== "" ?
+                    destaque.img !== undefined && destaque.img.trim() !== "" ?
                         <Destaque
                             destaque={destaque}
                             onPress={() => {
-                                navigation.navigate('Jogo', {
+                                navigation.navigate('Info', {
                                     img: destaque.img,
                                     titulo: destaque.titulo,
                                     desc: destaque.desc,
@@ -60,14 +59,14 @@ export function Home({ navigation }) {
                 }
 
                 {
-                    materias.filter((m) => m.titulo.trim() !== destaque.titulo.trim()).map((materia, index) => 
+                    materias.filter((m) => m.titulo !== destaque.titulo).map((materia, index) => 
                         <Card
                             materia={materia}
                             index={index}
                             key={index}
                             navigation={navigation}
                             onPress={() => {
-                                navigation.navigate('Jogo', {
+                                navigation.navigate('Info', {
                                     img: materia.img,
                                     titulo: materia.titulo,
                                     desc: materia.desc,
